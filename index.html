@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DÉFIS PHOTOBOOTH</title>
+  <title>DÉFIS PHOTOBOOTH - 18 ANS MANON</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     * {
@@ -19,13 +19,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* Centre tout le bloc au milieu verticalement */
+      justify-content: center;
       min-height: 100vh;
       padding: 20px;
       text-align: center;
     }
 
-    /* Conteneur principal regroupant tout le jeu */
     .app-container {
       width: 100%;
       max-width: 360px;
@@ -34,12 +33,20 @@
       align-items: center;
     }
 
-    /* 1. SECTION LOGO + TITRE */
     header {
-      margin-bottom: 25px; /* Espacement fixe et contrôlé sous le titre */
+      margin-bottom: 25px;
     }
 
-    /* Emplacement du logo */
+    /* Style du titre d'événement (ex: 18 ans Manon) */
+    .event-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ec4899;
+      margin-bottom: 4px;
+    }
+
     .logo {
       max-width: 90px;
       height: auto;
@@ -67,11 +74,10 @@
       margin-top: 6px;
     }
 
-    /* 2. SECTION CARRIER DE DÉFI */
     .card-container {
       width: 100%;
       height: 220px;
-      margin-bottom: 25px; /* Espacement équilibré entre le carré et le bouton */
+      margin-bottom: 25px;
     }
 
     .card {
@@ -98,7 +104,6 @@
       transform: scale(1.03);
     }
 
-    /* 3. SECTION BOUTON START / STOP */
     button {
       width: 100%;
       max-width: 280px;
@@ -125,8 +130,12 @@
 
   <div class="app-container">
     <header>
-      <!-- Pour afficher votre logo plus tard, il suffira de retirer les "<!--" ci-dessous : -->
+      <!-- Titre personnalisé de l'événement -->
+      <p class="event-title">✨ 18 ans Manon ✨</p>
+      
+      <!-- Logo optionnel si besoin plus tard : -->
       <!-- <img src="logo.png" alt="Logo" class="logo"> -->
+
       <h1>DÉFIS PHOTOBOOTH</h1>
       <p class="subtitle">Flashe, tire ton défi et pose ! 📸</p>
     </header>
