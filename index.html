@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Défis photobooth</title>
+  <title>DÉFIS PHOTOBOOTH</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     * {
@@ -14,43 +14,64 @@
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: linear-gradient(135deg, #311042 0%, #701a75 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
       color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center; /* Centre tout le bloc au milieu verticalement */
       min-height: 100vh;
-      padding: 30px 10px;
+      padding: 20px;
       text-align: center;
     }
 
+    /* Conteneur principal regroupant tout le jeu */
+    .app-container {
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 1. SECTION LOGO + TITRE */
     header {
-      margin-top: 10px;
+      margin-bottom: 25px; /* Espacement fixe et contrôlé sous le titre */
+    }
+
+    /* Emplacement du logo */
+    .logo {
+      max-width: 90px;
+      height: auto;
+      margin-bottom: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 800;
       letter-spacing: 1px;
       text-transform: uppercase;
-      background: linear-gradient(45deg, #a855f7, #ec4899);
+      background: linear-gradient(45deg, #ec4899, #8b5cf6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+      line-height: 1.2;
     }
 
     .subtitle {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.85);
       margin-top: 6px;
     }
 
+    /* 2. SECTION CARRIER DE DÉFI */
     .card-container {
       width: 100%;
-      max-width: 340px;
-      height: 230px;
-      margin: 30px 0;
+      height: 220px;
+      margin-bottom: 25px; /* Espacement équilibré entre le carré et le bouton */
     }
 
     .card {
@@ -59,17 +80,17 @@
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 2px solid #f43f5e;
+      border: 2px solid #ec4899;
       border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-      font-size: 1.35rem;
+      padding: 20px;
+      font-size: 1.3rem;
       font-weight: 700;
       line-height: 1.4;
       color: #ffffff;
-      box-shadow: 0 0 25px #f43f5e66;
+      box-shadow: 0 0 25px #ec489966;
       transition: all 0.3s ease;
     }
 
@@ -77,22 +98,22 @@
       transform: scale(1.03);
     }
 
+    /* 3. SECTION BOUTON START / STOP */
     button {
       width: 100%;
-      max-width: 300px;
-      padding: 18px 0;
-      font-size: 1.25rem;
+      max-width: 280px;
+      padding: 16px 0;
+      font-size: 1.2rem;
       font-weight: 800;
       letter-spacing: 1px;
       text-transform: uppercase;
       color: #ffffff;
-      background: linear-gradient(45deg, #a855f7, #ec4899);
+      background: linear-gradient(45deg, #ec4899, #8b5cf6);
       border: none;
       border-radius: 50px;
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       transition: transform 0.1s ease, box-shadow 0.2s ease;
-      margin-bottom: 12px;
     }
 
     button:active {
@@ -102,26 +123,32 @@
 </head>
 <body>
 
-  <header>
-    <h1>Défis photobooth</h1>
-    <p class="subtitle">Seras tu prêt(e) à relever le défi ?</p>
-  </header>
+  <div class="app-container">
+    <header>
+      <!-- Pour afficher votre logo plus tard, il suffira de retirer les "<!--" ci-dessous : -->
+      <!-- <img src="logo.png" alt="Logo" class="logo"> -->
+      <h1>DÉFIS PHOTOBOOTH</h1>
+      <p class="subtitle">Flashe, tire ton défi et pose ! 📸</p>
+    </header>
 
-  <div class="card-container">
-    <div class="card" id="card">Touche le bouton pour commencer</div>
+    <div class="card-container">
+      <div class="card" id="card">Touche le bouton pour commencer</div>
+    </div>
+
+    <button id="actionBtn" onclick="toggleLoop()">LANCER</button>
   </div>
-
-  <button id="actionBtn" onclick="toggleLoop()">LANCER</button>
 
   <script>
     const defis = [
       "Fais une grimace hilarante !",
-      "Prends une photo avec le DJ",
-      "Prends une photo grimace",
-      "Prends une photo que tu n'oserais pas publier sur les réseaux",
-      "Prends une photo hilarante",
-      "Prends une photo avec \"l'air dégouté d'être la\""
-];
+      "Pose comme une star de cinéma",
+      "Reconstitue une scène d'action à 2",
+      "Fais la plus belle pose rétro/80s",
+      "Porte le plus d'accessoires possible",
+      "Fais un bisou sur la joue de ton voisin",
+      "Fais une pose 'Secret Agent' avec tes lunettes",
+      "Saute en l'air au moment du cliché !"
+    ];
 
     let intervalId = null;
     let isRunning = false;
@@ -133,7 +160,7 @@
         clearInterval(intervalId);
         isRunning = false;
         btn.innerText = "RECOMMENCER";
-        btn.style.background = "linear-gradient(45deg, #a855f7, #ec4899)";
+        btn.style.background = "linear-gradient(45deg, #ec4899, #8b5cf6)";
         card.classList.add('stopped');
         if (typeof confetti === "function") confetti({ particleCount: 70, spread: 60, origin: { y: 0.65 } });
       } else {
